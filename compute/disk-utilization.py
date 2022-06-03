@@ -23,7 +23,7 @@ disk_usages = {
         not p.mountpoint.startswith('/var/lib/kubelet/pods')
 }
 
-times_stamp = datetime.datetime.now(tz=timezone('UTC'))
+timestamp = datetime.datetime.now(tz=timezone('UTC'))
 
 # get instance metadata
 instance = requests.get(
@@ -47,7 +47,7 @@ post_metric_data_response = monitoring_client.post_metric_data(
                 datapoints=[
                     oci.monitoring.models.Datapoint(
                         timestamp=datetime.datetime.strftime(
-                            times_stamp, "%Y-%m-%dT%H:%M:%S.%fZ"),
+                            timestamp, "%Y-%m-%dT%H:%M:%S.%fZ"),
                         value=disk_usages[mount_point]
                     )
                 ],
